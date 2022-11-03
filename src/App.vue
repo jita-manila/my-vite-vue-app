@@ -1,21 +1,71 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <p>你能显示出来吗？？？？</p>
+    <nut-navbar class="top-nav-wrapper" :placeholder="true">
+    <template #content>
+      <div class="d-flex justify-center align-center">
+        <img class="logo" src="./assets/img/logo.png" alt="">
+        <div class="slogan">鱼了个鱼</div>
+      </div>
+    </template>
+    </nut-navbar>
+    <main class="d-flex flex-column">
+        <nut-animate type='breath' :loop='true'>
+          <nut-button type='primary'>简单难度</nut-button>
+        </nut-animate>
+        <nut-animate type='breath' :loop='true'>
+          <nut-button type='primary'>中等难度</nut-button>
+        </nut-animate>
+        <nut-animate type='breath' :loop='true'>
+          <nut-button type='primary'>简单难度</nut-button>
+        </nut-animate>
+        <nut-animate type='breath' :loop='true'>
+          <nut-button type='primary'>简单难度</nut-button>
+        </nut-animate>
+        <nut-animate type='breath' :loop='true'>
+          <nut-button type='primary'>简单难度</nut-button>
+        </nut-animate>
+        <nut-animate type='breath' :loop='true'>
+          <nut-button type='primary'>简单难度</nut-button>
+        </nut-animate>
+
+    </main>
 </template>
 
 <script setup>
+  import { useDark, useToggle } from '@vueuse/core'
+  import { ref, computed } from 'vue'
+  
+  const theme = ref('')
 
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
+  const isDark = useDark()
+  const toggleDark = useToggle(isDark)
+  const toggle = (v) => {
+    toggleDark(v)
+    theme.value = v ? 'dark' : ''
+  }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+.logo {
+  width: 32px;
+  height: 32px;
+}
+.slogan {
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
+  margin-left: 6px;
+}
+.top-nav-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  .nut-button {
+    margin: 10px;
+  }
 }
 </style>
